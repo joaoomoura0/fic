@@ -1,30 +1,36 @@
 package com.fic.demo;
 
-import com.fic.demo.models.cursos;
-import com.fic.demo.service.cursoservice;
+import com.fic.demo.models.Curso;
+import com.fic.demo.service.CursoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class DemoApplication implements CommandLineRunner {
+
+	@Autowired
+	private CursoService cursoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	// Supondo que você tenha um EntityManager 'em' já criado e aberto
-	cursoservice service = new cursoservice(em);
+	@Override
+	public void run(String... args) {
+		Curso novoCurso = new Curso();
+		novoCurso.setCodCurso(1);
+		novoCurso.setVersaoCurso("v1");
+		novoCurso.setDescCurso("Curso de Java");
+		novoCurso.setCodAreaAtuacao(10);
+		novoCurso.setCargaHoraria(40.0);
+		novoCurso.setCodModalidadeDN(1);
+		novoCurso.setCodPrecificacao(1);
+		novoCurso.setValorCurso(500.0);
+		novoCurso.setNovoValorCurso(450.0);
 
-	cursos novoCurso = new cursos();
-novoCurso.setCodCursos(1);
-novoCurso.setVersaoCurso("v1");
-novoCurso.setDescCurso("Curso de Java");
-novoCurso.setCodAreaAtuacao(10);
-novoCurso.setCargaHoraria(40.0);
-novoCurso.setCodModalidadeDN(1);
-novoCurso.setCodPrecificacao(1);
-novoCurso.setValorCurso(500.0);
-novoCurso.setNovoValorCurso(450.0);
-service.inserirCurso(novoCurso);
-
+		cursoService.inserirCurso(novoCurso);
+		System.out.println("Curso inserido com sucesso!");
+	}
 }

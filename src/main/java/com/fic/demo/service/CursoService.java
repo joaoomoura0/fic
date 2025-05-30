@@ -1,19 +1,24 @@
 package com.fic.demo.service;
 
-import com.fic.demo.models.cursos;
-
+import com.fic.demo.models.Curso;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
-public class cursoservice {
+@Service
+public class CursoService {
 
+    @PersistenceContext
     private EntityManager entityManager;
 
-    public cursoservice(EntityManager entityManager) {
+    public CursoService(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public void inserirCurso(cursos curso) {
+    @Transactional
+    public void inserirCurso(Curso curso) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
