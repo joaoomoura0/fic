@@ -20,7 +20,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		Curso novoCurso = new Curso();
-		novoCurso.setCodCurso(1);
+		// não precisa setar o codCurso se usar @GeneratedValue
 		novoCurso.setVersaoCurso("v1");
 		novoCurso.setDescCurso("Curso de Java");
 		novoCurso.setCodAreaAtuacao(10);
@@ -30,7 +30,9 @@ public class DemoApplication implements CommandLineRunner {
 		novoCurso.setValorCurso(500.0);
 		novoCurso.setNovoValorCurso(450.0);
 
-		cursoService.inserirCurso(novoCurso);
+		cursoService.salvarCurso(novoCurso);
+
 		System.out.println("Curso inserido com sucesso!");
 	}
 }
+

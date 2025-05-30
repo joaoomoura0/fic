@@ -1,34 +1,32 @@
 package com.fic.demo.service;
 
 import com.fic.demo.models.Curso;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import com.fic.demo.repositories.CursoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CursoService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private CursoRepository cursoRepository;
 
-    public CursoService(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public Curso salvarCurso(Curso curso) {
+        return cursoRepository.save(curso);
     }
 
-    @Transactional
-    public void inserirCurso(Curso curso) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            entityManager.persist(curso);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;  // ou tratar o erro como preferir
-        }
+    public List<Curso> listarCursos() {
+        return cursoRepository.findAll();
+    }
+
+    public Optional<Curso> buscarPorId(Integer id) {
+        return cursoRepository.findById(id);
+    }
+
+    public void deletarCurso(Integer id) {
+        cursoRepository.deleteById(id);
     }
 }
