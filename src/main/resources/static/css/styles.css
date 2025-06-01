@@ -73,7 +73,19 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
+.btn1 {
+    width: 100%;
+    padding: 10px;
+    background-color: #0066b3; /* Azul SENAI */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1%;
+}
+
 .btn:hover {
     background-color: #004d99; /* Tom mais escuro do azul */
 }
-
