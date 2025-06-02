@@ -1,45 +1,69 @@
-/* Resetando alguns estilos padrão */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Corpo da página */
 body {
     font-family: Arial, sans-serif;
-    background-color: #e6f0f7; /* Fundo em tom claro */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #005ca9, #0072c6);
 }
 
-/* Container do login */
+/* Forma curva no fundo */
+    body::before,
+    body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+body::before {
+    width: 1000px;
+    height: 1000px;
+    background-color: #013a6b;
+    top: -400px;
+    left: -400px;
+}
+
+body::after {
+    width: 700px;
+    height: 700px;
+    background-color: #0066b3;
+    bottom: -300px;
+    right: -300px;
+}
+
 .login-container {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-/* Caixa de login */
 .login-box {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 300px;
     text-align: center;
 }
 
-/* Estilo do título */
-h2 {
-    color: #0066b3; /* Azul SENAI */
+.logo {
+    width: 150px;
     margin-bottom: 20px;
 }
 
-/* Estilo dos campos de entrada */
 .input-group {
     margin-bottom: 15px;
     text-align: left;
@@ -60,32 +84,18 @@ h2 {
     border-radius: 5px;
 }
 
-/* Botão de login */
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #0066b3; /* Azul SENAI */
+    background-color: #0066b3;
     color: white;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.btn1 {
-    width: 100%;
-    padding: 10px;
-    background-color: #0066b3; /* Azul SENAI */
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 1%;
 }
 
 .btn:hover {
-    background-color: #004d99; /* Tom mais escuro do azul */
+    background-color: #004d99;
 }
