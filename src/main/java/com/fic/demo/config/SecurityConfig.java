@@ -32,13 +32,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())  // DESABILITA CSRF para teste rápido
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/minhalogin", "/css/**", "/js/**", "/images/**", "/cadastro/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/minhalogin")
-
+                        .loginProcessingUrl("/minhalogin")
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
