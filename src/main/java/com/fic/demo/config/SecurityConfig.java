@@ -38,7 +38,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/minhalogin")
-                        .loginProcessingUrl("/minhalogin")
+
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
