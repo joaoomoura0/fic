@@ -38,6 +38,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/minhalogin")
+                        .loginProcessingUrl("/minhalogin")
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
@@ -45,6 +46,8 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -58,5 +61,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider()) // registra o provider
                 .build();
     }
+
+
 
 }
