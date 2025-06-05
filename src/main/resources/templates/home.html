@@ -1,11 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Página Inicial</title>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            width: 250px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            cursor: pointer;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+        }
+        .card p {
+            font-size: 1em;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-<h1>Bem-vindo à página inicial!</h1>
-<p>Você está logado.</p>
+
+<h1>Bem-vindo à Home</h1>
+<div class="container">
+    <a href="/cadastro" class="card">
+        <h2>Cadastro</h2>
+        <p>Crie uma nova conta de usuário</p>
+    </a>
+    <a href="/login" class="card">
+        <h2>Login</h2>
+        <p>Entre na sua conta</p>
+    </a>
+    <a href="/perfil" class="card">
+        <h2>Perfil</h2>
+        <p>Veja suas informações</p>
+    </a>
+    <a href="/sobre" class="card">
+        <h2>Sobre</h2>
+        <p>Informações sobre o sistema</p>
+    </a>
+</div>
+
 </body>
 </html>
