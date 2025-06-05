@@ -34,12 +34,12 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // DESABILITA CSRF para teste rápido
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/minhalogin", "/css/**", "/js/**", "/images/**", "/cadastro/**").permitAll()
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/cadastro/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/minhalogin")
-                        .loginProcessingUrl("/minhalogin")
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )

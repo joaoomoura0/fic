@@ -1,7 +1,4 @@
 /* cadastro.css */
-/* Reaproveita o base.css e só aplica variações específicas */
-
-@import url('base.css');
 
 .logo {
     margin-bottom: 20px;
@@ -11,7 +8,6 @@
     width: 150px;
 }
 
-/* O resto é igual ao login.css. Se quiser um visual diferente aqui, pode customizar */
 .login-box {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 40px;
@@ -44,7 +40,7 @@
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #0066b3;
     color: white;
     font-size: 16px;
     border: none;
@@ -54,5 +50,5 @@
 }
 
 .btn:hover {
-    background-color: #218838;
+    background-color: #004d99;
 }

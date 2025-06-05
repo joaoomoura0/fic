@@ -30,6 +30,6 @@ import org.springframework.web.bind.annotation.RequestParam;
         usuario.setPassword(passwordEncoder.encode(password)); // Criptografa a senha
         usuario.setRole("ROLE_USER");
         usuarioRepository.save(usuario);
-        return "redirect:/minhalogin";
+        return "redirect:/login";
     }
 }
