@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/form.css" />
+  <title th:text="${#strings.isEmpty(curso.codCurso) ? 'Cadastrar Curso' : 'Editar Curso'}">Curso</title>
+</head>
+<body>
+<h1 th:text="${#strings.isEmpty(curso.codCurso) ? 'Cadastrar Novo Curso' : 'Editar Curso'}"></h1>
+
+<form th:action="@{/cursos}" th:object="${curso}" method="post">
+  <input type="hidden" th:field="*{codCurso}" />
+
+  <label for="versaoCurso">Versão do Curso:</label>
+  <input type="text" id="versaoCurso" th:field="*{versaoCurso}" required /><br><br>
+
+  <label for="descCurso">Descrição do Curso:</label>
+  <input type="text" id="descCurso" th:field="*{descCurso}" required /><br><br>
+
+  <label for="codAreaAtuacao">Código da Área de Atuação:</label>
+  <input type="number" id="codAreaAtuacao" th:field="*{codAreaAtuacao}" required /><br><br>
+
+  <label for="cargaHoraria">Carga Horária:</label>
+  <input type="number" id="cargaHoraria" th:field="*{cargaHoraria}" step="0.1" required /><br><br>
+
+  <label for="codModalidadeDN">Código Modalidade DN:</label>
+  <input type="number" id="codModalidadeDN" th:field="*{codModalidadeDN}" required /><br><br>
+
+  <label for="codPrecificacao">Código Precificação:</label>
+  <input type="number" id="codPrecificacao" th:field="*{codPrecificacao}" required /><br><br>
+
+  <label for="valorCurso">Valor do Curso (R$):</label>
+  <input type="number" id="valorCurso" th:field="*{valorCurso}" step="0.01" required /><br><br>
+
+  <label for="novoValorCurso">Novo Valor do Curso (R$):</label>
+  <input type="number" id="novoValorCurso" th:field="*{novoValorCurso}" step="0.01" /><br><br>
+
+  <button type="submit">Salvar</button>
+  <a th:href="@{/cursos}">Cancelar</a>
+</form>
+</body>
+</html>

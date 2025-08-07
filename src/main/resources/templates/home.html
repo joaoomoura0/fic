@@ -1,34 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/home.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - SENAI</title>
-    </head>
+    <title>Home</title>
+</head>
 <body>
-<header>
-    <!-- Altere o caminho abaixo conforme o local do seu arquivo de imagem -->
-    <img src="/img/senai.png" alt="Logo SENAI" class="logo-img">
+<h1>Bem-vindo à Home</h1>
 
-    <nav class="nav-icons">
-        <div class="nav-item">
-            <i class="fas fa-home"></i>
-            <span>Página Inicial</span>
-        </div>
-        <div class="nav-item">
-            <i class="fas fa-book"></i>
-            <span>Cursos</span>
-        </div>
-    </nav>
-
-    <div class="logout">
-        <i class="fas fa-sign-out-alt"></i>
-    </div>
-</header>
-
-<main>
-    <h2>Olá ****, seja bem-vindo(a)</h2>
-</main>
+<ul>
+    <li><a th:href="@{/cursos}">Ver cursos</a></li>
+    <!-- Adicione outros links aqui quando tiver outras páginas -->
+</ul>
 </body>
 </html>

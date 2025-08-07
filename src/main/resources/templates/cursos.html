@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/cursos.css" />
+  <title>Lista de Cursos</title>
+</head>
+<body>
+<h1>Cursos Disponíveis</h1>
+
+<a th:href="@{/cursos/novo}">Cadastrar novo curso</a>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Código</th>
+    <th>Versão</th>
+    <th>Descrição</th>
+    <th>Cód. Área Atuação</th>
+    <th>Carga Horária</th>
+    <th>Cód. Modalidade DN</th>
+    <th>Cód. Precificação</th>
+    <th>Valor</th>
+    <th>Novo Valor</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="curso : ${cursos}">
+    <td th:text="${curso.codCurso}"></td>
+    <td th:text="${curso.versaoCurso}"></td>
+    <td th:text="${curso.descCurso}"></td>
+    <td th:text="${curso.codAreaAtuacao}"></td>
+    <td th:text="${curso.cargaHoraria} + ' h'"></td>
+    <td th:text="${curso.codModalidadeDN}"></td>
+    <td th:text="${curso.codPrecificacao}"></td>
+    <td th:text="${curso.valorCurso} + ' R$'"></td>
+    <td th:text="${curso.novoValorCurso} + ' R$'"></td>
+    <td>
+      <a th:href="@{'/cursos/editar/' + ${curso.codCurso}}">Editar</a> |
+      <a th:href="@{'/cursos/excluir/' + ${curso.codCurso}}">Excluir</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

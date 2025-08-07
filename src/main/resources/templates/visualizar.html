@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/visualizar.css" />
+  <title>Detalhes do Curso</title>
+</head>
+<body>
+<h1>Detalhes do Curso</h1>
+
+<div>
+  <strong>ID:</strong> <span th:text="${curso.codCurso}"></span><br>
+  <strong>Versão do Curso:</strong> <span th:text="${curso.versaoCurso}"></span><br>
+  <strong>Descrição:</strong> <span th:text="${curso.descCurso}"></span><br>
+  <strong>Código da Área de Atuação:</strong> <span th:text="${curso.codAreaAtuacao}"></span><br>
+  <strong>Carga Horária:</strong> <span th:text="${curso.cargaHoraria}"></span><br>
+  <strong>Código da Modalidade:</strong> <span th:text="${curso.codModalidadeDN}"></span><br>
+  <strong>Código de Precificação:</strong> <span th:text="${curso.codPrecificacao}"></span><br>
+  <strong>Valor do Curso:</strong> <span th:text="${curso.valorCurso}"></span><br>
+  <strong>Novo Valor do Curso:</strong> <span th:text="${curso.novoValorCurso}"></span><br>
+</div>
+
+<br>
+<a th:href="@{/cursos}">Voltar para a lista</a>
+</body>
+</html>

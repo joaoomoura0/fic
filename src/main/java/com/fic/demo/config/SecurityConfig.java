@@ -32,9 +32,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())  // DESABILITA CSRF para teste rápido
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/cadastro/**").permitAll()
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/cadastro/**", "/cursos/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
