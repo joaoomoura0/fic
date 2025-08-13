@@ -4,42 +4,45 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import java.util.Date;
+import jakarta.persistence.Column;
+import java.time.LocalDate;
 
 @Entity
 public class Feriado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;  // id gerado automaticamente
+    @Column(name = "codferiado")  // Sugestão de nome conforme padrão das outras tabelas
+    private Integer codferiado;
 
-    private Date dataEvento;
+    @Column(name = "dataevento", nullable = false)
+    private LocalDate dataevento;  // Usando LocalDate (mais moderno que Date)
 
-    private String descEvento;
+    @Column(name = "descevento", length = 100, nullable = false)
+    private String descevento;
 
     // Getters e Setters
-
-    public Integer getId() {
-        return id;
+    public Integer getCodferiado() {
+        return codferiado;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCodferiado(Integer codferiado) {
+        this.codferiado = codferiado;
     }
 
-    public Date getDataEvento() {
-        return dataEvento;
+    public LocalDate getDataevento() {
+        return dataevento;
     }
 
-    public void setDataEvento(Date dataEvento) {
-        this.dataEvento = dataEvento;
+    public void setDataevento(LocalDate dataevento) {
+        this.dataevento = dataevento;
     }
 
-    public String getDescEvento() {
-        return descEvento;
+    public String getDescevento() {
+        return descevento;
     }
 
-    public void setDescEvento(String descEvento) {
-        this.descEvento = descEvento;
+    public void setDescevento(String descevento) {
+        this.descevento = descevento;
     }
 }

@@ -1,94 +1,103 @@
 package com.fic.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
 public class Docente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codDocente;
+    @Column(name = "coddocente")
+    private Integer coddocente;
 
-    private String nomeDocente;
+    @Column(name = "nomedocente", length = 50, nullable = false)
+    private String nomedocente;
 
-    private Integer codFuncao;
+    @ManyToOne
+    @JoinColumn(name = "codfuncao", nullable = false)
+    private Funcao funcao;
 
-    private Integer codCategoria;
+    @ManyToOne
+    @JoinColumn(name = "codcategoria", nullable = false)
+    private Categoria categoria;
 
-    private Integer codEntidade;
+    @ManyToOne
+    @JoinColumn(name = "codentidade", nullable = false)
+    private Entidade entidade;
 
-    private Integer codFilial;
+    @ManyToOne
+    @JoinColumn(name = "codfilial", nullable = false)
+    private Filial filial;
 
-    private Integer codSupImediato;
+    @ManyToOne
+    @JoinColumn(name = "codsupimediato", nullable = false)
+    private SuperiorImediato superiorImediato;
 
-    private String inStatus;
+    @Column(name = "instatus", length = 1, nullable = false)
+    private String instatus;
 
     // Getters e Setters
-
-    public Integer getCodDocente() {
-        return codDocente;
+    public Integer getCoddocente() {
+        return coddocente;
     }
 
-    public void setCodDocente(Integer codDocente) {
-        this.codDocente = codDocente;
+    public void setCoddocente(Integer coddocente) {
+        this.coddocente = coddocente;
     }
 
-    public String getNomeDocente() {
-        return nomeDocente;
+    public String getNomedocente() {
+        return nomedocente;
     }
 
-    public void setNomeDocente(String nomeDocente) {
-        this.nomeDocente = nomeDocente;
+    public void setNomedocente(String nomedocente) {
+        this.nomedocente = nomedocente;
     }
 
-    public Integer getCodFuncao() {
-        return codFuncao;
+    public Funcao getFuncao() {
+        return funcao;
     }
 
-    public void setCodFuncao(Integer codFuncao) {
-        this.codFuncao = codFuncao;
+    public void setFuncao(Funcao funcao) {
+        this.funcao = funcao;
     }
 
-    public Integer getCodCategoria() {
-        return codCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCodCategoria(Integer codCategoria) {
-        this.codCategoria = codCategoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
-    public Integer getCodEntidade() {
-        return codEntidade;
+    public Entidade getEntidade() {
+        return entidade;
     }
 
-    public void setCodEntidade(Integer codEntidade) {
-        this.codEntidade = codEntidade;
+    public void setEntidade(Entidade entidade) {
+        this.entidade = entidade;
     }
 
-    public Integer getCodFilial() {
-        return codFilial;
+    public Filial getFilial() {
+        return filial;
     }
 
-    public void setCodFilial(Integer codFilial) {
-        this.codFilial = codFilial;
+    public void setFilial(Filial filial) {
+        this.filial = filial;
     }
 
-    public Integer getCodSupImediato() {
-        return codSupImediato;
+    public SuperiorImediato getSuperiorImediato() {
+        return superiorImediato;
     }
 
-    public void setCodSupImediato(Integer codSupImediato) {
-        this.codSupImediato = codSupImediato;
+    public void setSuperiorImediato(SuperiorImediato superiorImediato) {
+        this.superiorImediato = superiorImediato;
     }
 
-    public String getInStatus() {
-        return inStatus;
+    public String getInstatus() {
+        return instatus;
     }
 
-    public void setInStatus(String inStatus) {
-        this.inStatus = inStatus;
+    public void setInstatus(String instatus) {
+        this.instatus = instatus;
     }
 }

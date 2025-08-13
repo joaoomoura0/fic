@@ -4,30 +4,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class Precificacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codPrecificacao;
+    @Column(name = "codprecificacao")
+    private Integer codprecificacao;
 
-    private String descPrecificacao;
+    // Adicionado 'length = 40' e 'nullable = false' para mapear as restrições
+    // do banco de dados.
+    @Column(name = "descprecificacao", length = 40, nullable = false)
+    private String descprecificacao;
 
     // Getters e Setters
-    public Integer getCodPrecificacao() {
-        return codPrecificacao;
+    public Integer getCodprecificacao() {
+        return codprecificacao;
     }
 
-    public void setCodPrecificacao(Integer codPrecificacao) {
-        this.codPrecificacao = codPrecificacao;
+    public void setCodprecificacao(Integer codprecificacao) {
+        this.codprecificacao = codprecificacao;
     }
 
-    public String getDescPrecificacao() {
-        return descPrecificacao;
+    public String getDescprecificacao() {
+        return descprecificacao;
     }
 
-    public void setDescPrecificacao(String descPrecificacao) {
-        this.descPrecificacao = descPrecificacao;
+    public void setDescprecificacao(String descprecificacao) {
+        this.descprecificacao = descprecificacao;
     }
 }

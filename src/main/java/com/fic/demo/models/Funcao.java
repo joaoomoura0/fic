@@ -4,30 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class Funcao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codFuncao;
+    @Column(name = "codfuncao")
+    private Integer codfuncao;  // Tudo minúsculo para match exato com o banco
 
-    private String descFuncao;
+    @Column(name = "descfuncao", length = 50, nullable = false)
+    private String descfuncao;  // Tudo minúsculo para match exato com o banco
 
-    // Getters e Setters
-    public Integer getCodFuncao() {
-        return codFuncao;
+    // Getters e Setters seguindo padrão Java mas com nomes minúsculos
+    public Integer getCodfuncao() {
+        return codfuncao;
     }
 
-    public void setCodFuncao(Integer codFuncao) {
-        this.codFuncao = codFuncao;
+    public void setCodfuncao(Integer codfuncao) {
+        this.codfuncao = codfuncao;
     }
 
-    public String getDescFuncao() {
-        return descFuncao;
+    public String getDescfuncao() {
+        return descfuncao;
     }
 
-    public void setDescFuncao(String descFuncao) {
-        this.descFuncao = descFuncao;
+    public void setDescfuncao(String descfuncao) {
+        this.descfuncao = descfuncao;
     }
 }

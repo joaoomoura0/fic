@@ -4,40 +4,47 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Column;
 
 @Entity
 public class Ambiente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codAmbiente;
+    @Column(name = "codambiente")
+    private Integer codambiente;
 
-    private String descAmbiente;
+    @Column(name = "descambiente", length = 80, nullable = false)
+    private String descambiente;
 
-    private Integer codTipoAmbiente;
+    @ManyToOne
+    @JoinColumn(name = "codtipoambiente", nullable = false)
+    private TiposAmbiente tipoambiente;
 
     // Getters e Setters
-    public Integer getCodAmbiente() {
-        return codAmbiente;
+    public Integer getCodambiente() {
+        return codambiente;
     }
 
-    public void setCodAmbiente(Integer codAmbiente) {
-        this.codAmbiente = codAmbiente;
+    public void setCodambiente(Integer codambiente) {
+        this.codambiente = codambiente;
     }
 
-    public String getDescAmbiente() {
-        return descAmbiente;
+    public String getDescambiente() {
+        return descambiente;
     }
 
-    public void setDescAmbiente(String descAmbiente) {
-        this.descAmbiente = descAmbiente;
+    public void setDescambiente(String descambiente) {
+        this.descambiente = descambiente;
     }
 
-    public Integer getCodTipoAmbiente() {
-        return codTipoAmbiente;
+    public TiposAmbiente getTipoambiente() {
+        return tipoambiente;
     }
 
-    public void setCodTipoAmbiente(Integer codTipoAmbiente) {
-        this.codTipoAmbiente = codTipoAmbiente;
+    public void setTipoambiente(TiposAmbiente tipoambiente) {
+        this.tipoambiente = tipoambiente;
     }
 }

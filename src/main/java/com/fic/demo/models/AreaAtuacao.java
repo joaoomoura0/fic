@@ -4,30 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 @Entity
 public class AreaAtuacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codAreaAtuacao;
+    @Column(name = "codareatuacao")  // Nome exato da coluna no banco
+    private Integer codareatuacao;  // Atributo em minúsculo
 
-    private String descAreaAtuacao;
+    @Column(name = "descareaatuacao", length = 50, nullable = false)  // Constraints conforme banco
+    private String descareaatuacao;  // Atributo em minúsculo
 
     // Getters e Setters
-    public Integer getCodAreaAtuacao() {
-        return codAreaAtuacao;
+    public Integer getCodareatuacao() {
+        return codareatuacao;
     }
 
-    public void setCodAreaAtuacao(Integer codAreaAtuacao) {
-        this.codAreaAtuacao = codAreaAtuacao;
+    public void setCodareatuacao(Integer codareatuacao) {
+        this.codareatuacao = codareatuacao;
     }
 
-    public String getDescAreaAtuacao() {
-        return descAreaAtuacao;
+    public String getDescareaatuacao() {
+        return descareaatuacao;
     }
 
-    public void setDescAreaAtuacao(String descAreaAtuacao) {
-        this.descAreaAtuacao = descAreaAtuacao;
+    public void setDescareaatuacao(String descareaatuacao) {
+        this.descareaatuacao = descareaatuacao;
     }
 }

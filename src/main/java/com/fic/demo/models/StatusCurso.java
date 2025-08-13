@@ -4,30 +4,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class StatusCurso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codStatus;
+    // Adicionada a anotação @Column para ser explícito e incluir restrições
+    @Column(name = "codstatus")
+    private Integer codstatus;
 
-    private String descStatus;
+    // Adicionada a anotação @Column para ser explícito e incluir restrições
+    @Column(name = "descstatus", length = 20, nullable = false)
+    private String descstatus;
 
     // Getters e Setters
-    public Integer getCodStatus() {
-        return codStatus;
+    public Integer getCodstatus() {
+        return codstatus;
     }
 
-    public void setCodStatus(Integer codStatus) {
-        this.codStatus = codStatus;
+    public void setCodstatus(Integer codstatus) {
+        this.codstatus = codstatus;
     }
 
-    public String getDescStatus() {
-        return descStatus;
+    public String getDescstatus() {
+        return descstatus;
     }
 
-    public void setDescStatus(String descStatus) {
-        this.descStatus = descStatus;
+    public void setDescstatus(String descstatus) {
+        this.descstatus = descstatus;
     }
 }

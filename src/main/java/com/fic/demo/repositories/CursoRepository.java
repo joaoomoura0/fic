@@ -1,7 +1,9 @@
 package com.fic.demo.repositories;
 
+import com.fic.demo.models.Curso2Id;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.fic.demo.models.Curso;
+import org.springframework.stereotype.Repository;
 
-public interface CursoRepository extends JpaRepository<Curso, Integer> {
+@Repository
+public interface Curso2Repository extends JpaRepository<Curso2, Curso2Id> {
 }

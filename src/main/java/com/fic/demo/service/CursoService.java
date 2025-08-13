@@ -1,7 +1,7 @@
 package com.fic.demo.service;
 
-import com.fic.demo.models.Curso;
-import com.fic.demo.repositories.CursoRepository;
+import com.fic.demo.models.Curso2Id;
+import com.fic.demo.repositories.Curso2Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,24 +9,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CursoService {
+public class Curso2Service {
 
     @Autowired
-    private CursoRepository cursoRepository;
+    private Curso2Repository curso2Repository;
 
-    public Curso salvarCurso(Curso curso) {
-        return cursoRepository.save(curso);
+    public Curso2 salvarCurso(Curso2 curso2) {
+        return curso2Repository.save(curso2);
     }
 
-    public List<Curso> listarCursos() {
-        return cursoRepository.findAll();
+    public List<Curso2> listarCursos() {
+        return curso2Repository.findAll();
     }
 
-    public Optional<Curso> buscarPorId(Integer id) {
-        return cursoRepository.findById(id);
+    public Optional<Curso2> buscarPorId(Curso2Id id) {
+        return curso2Repository.findById(id);
     }
 
-    public void deletarCurso(Integer id) {
-        cursoRepository.deleteById(id);
+    public void excluirCurso(Curso2Id id) {
+        curso2Repository.deleteById(id);
     }
 }

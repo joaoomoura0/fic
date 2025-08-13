@@ -1,33 +1,33 @@
 package com.fic.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "tiposambiente")
 public class TiposAmbiente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codTipoAmbiente;
+    @Column(name = "codtipoambiente")
+    private Integer codtipoambiente; // Renomeado para seguir a convenção do banco
 
-    private String descTipoAmbiente;
+    @Column(name = "desctipoambiente", nullable = false, length = 30)
+    private String desctipoambiente; // Renomeado para seguir a convenção do banco
 
     // Getters e Setters
-    public Integer getCodTipoAmbiente() {
-        return codTipoAmbiente;
+    public Integer getCodtipoambiente() {
+        return codtipoambiente;
     }
 
-    public void setCodTipoAmbiente(Integer codTipoAmbiente) {
-        this.codTipoAmbiente = codTipoAmbiente;
+    public void setCodtipoambiente(Integer codtipoambiente) {
+        this.codtipoambiente = codtipoambiente;
     }
 
-    public String getDescTipoAmbiente() {
-        return descTipoAmbiente;
+    public String getDesctipoambiente() {
+        return desctipoambiente;
     }
 
-    public void setDescTipoAmbiente(String descTipoAmbiente) {
-        this.descTipoAmbiente = descTipoAmbiente;
+    public void setDesctipoambiente(String desctipoambiente) {
+        this.desctipoambiente = desctipoambiente;
     }
 }

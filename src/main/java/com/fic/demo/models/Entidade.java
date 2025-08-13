@@ -4,31 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class Entidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codEntidade;
+    @Column(name = "codentidade")  // Nome exato da coluna no banco
+    private Integer codentidade;  // Atributo em minúsculo
 
-    private String descEntidade;
+    @Column(name = "descentidade", length = 15, nullable = false)  // Constraints do banco
+    private String descentidade;  // Atributo em minúsculo
 
     // Getters e Setters
-
-    public Integer getCodEntidade() {
-        return codEntidade;
+    public Integer getCodentidade() {
+        return codentidade;
     }
 
-    public void setCodEntidade(Integer codEntidade) {
-        this.codEntidade = codEntidade;
+    public void setCodentidade(Integer codentidade) {
+        this.codentidade = codentidade;
     }
 
-    public String getDescEntidade() {
-        return descEntidade;
+    public String getDescentidade() {
+        return descentidade;
     }
 
-    public void setDescEntidade(String descEntidade) {
-        this.descEntidade = descEntidade;
+    public void setDescentidade(String descentidade) {
+        this.descentidade = descentidade;
     }
 }

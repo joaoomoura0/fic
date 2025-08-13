@@ -4,31 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codCategoria;
+    @Column(name = "codcategoria")  // Nome exato da coluna no banco
+    private Integer codcategoria;  // Atributo em minúsculo
 
-    private String descCategoria;
+    @Column(name = "desccategoria", length = 15, nullable = false)  // Constraints do banco
+    private String desccategoria;  // Atributo em minúsculo
 
     // Getters e Setters
-
-    public Integer getCodCategoria() {
-        return codCategoria;
+    public Integer getCodcategoria() {
+        return codcategoria;
     }
 
-    public void setCodCategoria(Integer codCategoria) {
-        this.codCategoria = codCategoria;
+    public void setCodcategoria(Integer codcategoria) {
+        this.codcategoria = codcategoria;
     }
 
-    public String getDescCategoria() {
-        return descCategoria;
+    public String getDesccategoria() {
+        return desccategoria;
     }
 
-    public void setDescCategoria(String descCategoria) {
-        this.descCategoria = descCategoria;
+    public void setDesccategoria(String desccategoria) {
+        this.desccategoria = desccategoria;
     }
 }

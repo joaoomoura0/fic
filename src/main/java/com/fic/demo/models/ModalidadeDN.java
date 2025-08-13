@@ -4,30 +4,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class ModalidadeDN {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codModalidadeDN;
+    @Column(name = "codmodalidadedn")
+    private Integer codmodalidadeDN;
 
-    private String descModalidadeDN;
+    // Adicionado 'nullable = false' para corresponder à restrição do banco de dados.
+    @Column(name = "escmodalidadedn", length = 80, nullable = false)
+    private String escmodalidadeDN;
 
     // Getters e Setters
-    public Integer getCodModalidadeDN() {
-        return codModalidadeDN;
+    // Os nomes dos métodos foram ajustados para seguir o padrão Java (camelCase)
+    public Integer getCodmodalidadeDN() {
+        return codmodalidadeDN;
     }
 
-    public void setCodModalidadeDN(Integer codModalidadeDN) {
-        this.codModalidadeDN = codModalidadeDN;
+    public void setCodmodalidadeDN(Integer codmodalidadeDN) {
+        this.codmodalidadeDN = codmodalidadeDN;
     }
 
-    public String getDescModalidadeDN() {
-        return descModalidadeDN;
+    public String getEscmodalidadeDN() {
+        return escmodalidadeDN;
     }
 
-    public void setDescModalidadeDN(String descModalidadeDN) {
-        this.descModalidadeDN = descModalidadeDN;
+    public void setEscmodalidadeDN(String escmodalidadeDN) {
+        this.escmodalidadeDN = escmodalidadeDN;
     }
 }

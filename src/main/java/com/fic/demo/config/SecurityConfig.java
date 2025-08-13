@@ -1,30 +1,30 @@
 package com.fic.demo.config;
 
-import com.fic.demo.services.UsuarioService;
+// CORREÇÃO: O pacote deve ser 'service' (singular), não 'services' (plural).
+import com.fic.demo.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
-    private final UsuarioService usuarioService;
-
-    public SecurityConfig(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(usuarioService); // aqui está o link com seu banco
+        authProvider.setUserDetailsService(usuarioService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -48,21 +48,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // criptografia da senha
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http
-                .getSharedObject(AuthenticationManagerBuilder.class)
-                .authenticationProvider(authenticationProvider()) // registra o provider
-                .build();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
-
-
-
 }

@@ -4,30 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 public class Filial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codFilial;
+    @Column(name = "codfilial")
+    private Integer codfilial;  // Nome em minúsculo para match com banco
 
-    private String descFilial;
+    @Column(name = "descfilial", length = 30, nullable = false)
+    private String descfilial;  // Nome em minúsculo para match com banco
 
     // Getters e Setters
-    public Integer getCodFilial() {
-        return codFilial;
+    public Integer getCodfilial() {
+        return codfilial;
     }
 
-    public void setCodFilial(Integer codFilial) {
-        this.codFilial = codFilial;
+    public void setCodfilial(Integer codfilial) {
+        this.codfilial = codfilial;
     }
 
-    public String getDescFilial() {
-        return descFilial;
+    public String getDescfilial() {
+        return descfilial;
     }
 
-    public void setDescFilial(String descFilial) {
-        this.descFilial = descFilial;
+    public void setDescfilial(String descfilial) {
+        this.descfilial = descfilial;
     }
 }

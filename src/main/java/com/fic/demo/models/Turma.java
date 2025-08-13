@@ -1,33 +1,33 @@
 package com.fic.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "turma")
 public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codTurma;
+    @Column(name = "codturma")
+    private Integer codturma;
 
-    private String descTurma;
+    @Column(name = "descturma", nullable = false, length = 30)
+    private String descturma;
 
     // Getters e Setters
-    public Integer getCodTurma() {
-        return codTurma;
+    public Integer getCodturma() {
+        return codturma;
     }
 
-    public void setCodTurma(Integer codTurma) {
-        this.codTurma = codTurma;
+    public void setCodturma(Integer codturma) {
+        this.codturma = codturma;
     }
 
-    public String getDescTurma() {
-        return descTurma;
+    public String getDescturma() {
+        return descturma;
     }
 
-    public void setDescTurma(String descTurma) {
-        this.descTurma = descTurma;
+    public void setDescturma(String descturma) {
+        this.descturma = descturma;
     }
 }
