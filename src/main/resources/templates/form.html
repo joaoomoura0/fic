@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/form.css" />
-  <title th:text="${#strings.isEmpty(curso.codCurso) ? 'Cadastrar Curso' : 'Editar Curso'}">Curso</title>
+  <title th:text="${#strings.isEmpty(curso.id.codCurso) ? 'Cadastrar Curso' : 'Editar Curso'}">Curso</title>
 </head>
 <body>
-<h1 th:text="${#strings.isEmpty(curso.codCurso) ? 'Cadastrar Novo Curso' : 'Editar Curso'}"></h1>
+<h1 th:text="${#strings.isEmpty(curso.id.codCurso) ? 'Cadastrar Novo Curso' : 'Editar Curso'}"></h1>
 
 <form th:action="@{/cursos}" th:object="${curso}" method="post">
-  <input type="hidden" th:field="*{codCurso}" />
-
-  <label for="versaoCurso">Versão do Curso:</label>
-  <input type="text" id="versaoCurso" th:field="*{versaoCurso}" required /><br><br>
+  <!-- CORREÇÃO: Campos para a chave primária composta -->
+  <input type="hidden" th:field="*{id.codCurso}" />
+  <input type="hidden" th:field="*{id.versaoCurso}" />
 
   <label for="descCurso">Descrição do Curso:</label>
   <input type="text" id="descCurso" th:field="*{descCurso}" required /><br><br>
 
-  <label for="codAreaAtuacao">Código da Área de Atuação:</label>
-  <input type="number" id="codAreaAtuacao" th:field="*{codAreaAtuacao}" required /><br><br>
+  <!-- CORREÇÃO: Campos de chave estrangeira -->
+  <label for="areaAtuacao.codAreaAtuacao">Código da Área de Atuação:</label>
+  <input type="number" id="areaAtuacao.codAreaAtuacao" th:field="*{areaAtuacao.codAreaAtuacao}" required /><br><br>
 
   <label for="cargaHoraria">Carga Horária:</label>
   <input type="number" id="cargaHoraria" th:field="*{cargaHoraria}" step="0.1" required /><br><br>
 
-  <label for="codModalidadeDN">Código Modalidade DN:</label>
-  <input type="number" id="codModalidadeDN" th:field="*{codModalidadeDN}" required /><br><br>
+  <label for="modalidadeDN.codModalidadeDN">Código Modalidade DN:</label>
+  <input type="number" id="modalidadeDN.codModalidadeDN" th:field="*{modalidadeDN.codModalidadeDN}" required /><br><br>
 
-  <label for="codPrecificacao">Código Precificação:</label>
-  <input type="number" id="codPrecificacao" th:field="*{codPrecificacao}" required /><br><br>
+  <label for="precificacao.codPrecificacao">Código Precificação:</label>
+  <input type="number" id="precificacao.codPrecificacao" th:field="*{precificacao.codPrecificacao}" required /><br><br>
 
   <label for="valorCurso">Valor do Curso (R$):</label>
   <input type="number" id="valorCurso" th:field="*{valorCurso}" step="0.01" required /><br><br>
 
-  <label for="novoValorCurso">Novo Valor do Curso (R$):</label>
-  <input type="number" id="novoValorCurso" th:field="*{novoValorCurso}" step="0.01" /><br><br>
+  <!-- Removi 'novoValorCurso' pois ele não está no modelo 'Curso' que você me enviou. -->
+  <!-- Se você precisar dele, adicione-o no seu modelo e aqui. -->
 
   <button type="submit">Salvar</button>
   <a th:href="@{/cursos}">Cancelar</a>

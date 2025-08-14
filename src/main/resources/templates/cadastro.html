@@ -31,6 +31,17 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" required />
             </div>
+
+            <!-- NOVO CAMPO: Tipo de Usuário -->
+            <div class="input-group">
+                <label for="tipoUsuario">Tipo de Usuário</label>
+                <select id="tipoUsuario" name="tipoUsuario" required>
+                    <!-- Adicione as opções de tipo de usuário, como "ALUNO", "INSTRUTOR", etc. -->
+                    <option value="ALUNO">Aluno</option>
+                    <option value="INSTRUTOR">Instrutor</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn">Cadastrar</button>
         </form>
 

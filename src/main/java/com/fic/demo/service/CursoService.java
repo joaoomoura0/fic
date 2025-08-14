@@ -1,7 +1,8 @@
 package com.fic.demo.service;
 
-import com.fic.demo.models.Curso2Id;
-import com.fic.demo.repositories.Curso2Repository;
+import com.fic.demo.models.Curso;
+import com.fic.demo.models.CursoId;
+import com.fic.demo.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,24 +10,43 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class Curso2Service {
+public class CursoService {
 
+    // Injeta o repositório para acesso aos dados
     @Autowired
-    private Curso2Repository curso2Repository;
+    private CursoRepository cursoRepository;
 
-    public Curso2 salvarCurso(Curso2 curso2) {
-        return curso2Repository.save(curso2);
+    /**
+     * Salva ou atualiza um curso no banco de dados.
+     * @param curso O objeto Curso a ser salvo.
+     * @return O curso salvo.
+     */
+    public Curso salvarCurso(Curso curso) {
+        return cursoRepository.save(curso);
     }
 
-    public List<Curso2> listarCursos() {
-        return curso2Repository.findAll();
+    /**
+     * Retorna uma lista de todos os cursos.
+     * @return Uma lista de objetos Curso.
+     */
+    public List<Curso> listarCursos() {
+        return cursoRepository.findAll();
     }
 
-    public Optional<Curso2> buscarPorId(Curso2Id id) {
-        return curso2Repository.findById(id);
+    /**
+     * Busca um curso pelo seu ID composto.
+     * @param id O ID composto do curso (codCurso e versaoCurso).
+     * @return Um Optional contendo o curso, se encontrado.
+     */
+    public Optional<Curso> buscarPorId(CursoId id) {
+        return cursoRepository.findById(id);
     }
 
-    public void excluirCurso(Curso2Id id) {
-        curso2Repository.deleteById(id);
+    /**
+     * Exclui um curso do banco de dados pelo seu ID.
+     * @param id O ID composto do curso a ser excluído.
+     */
+    public void excluirCurso(CursoId id) {
+        cursoRepository.deleteById(id);
     }
 }
