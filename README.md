@@ -1,7 +1,7 @@
 # 🎓 Sistema de Gestão de Cursos FIC
 
 Projeto desenvolvido como trabalho escolar para atender uma demanda da **Diretoria do SENAI**.  
-O objetivo é criar um sistema web que facilite a **gestão e consulta de cursos FIC (Formação Inicial e Continuada)**, exibindo informações completas e de forma acessível para alunos, professores e coordenação.
+O objetivo é criar um sistema web que facilite a **gestão e consulta de cursos FIC (Formação Inicial e Continuada)**, exibindo informações completas e de forma acessível para a coordenação do SESI.
 
 ---
 
