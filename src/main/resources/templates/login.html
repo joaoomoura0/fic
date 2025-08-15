@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="/css/base.css"  />
-    <link rel="stylesheet" href="/css/login.css" />
+    <!-- Incluindo a folha de estilo base.css e o login.css -->
+    <!-- Ambos agora usam th:href para referenciar os caminhos a partir de /static/css/ -->
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/login-page/login.css}" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SENAI</title>
@@ -12,12 +14,18 @@
 
     <div class="login-content">
         <div class="login-box">
-            <!-- Move a logo para dentro da caixa de login -->
-            <div class="logo">
-                <img src="/img/senai.png" alt="Logo SENAI" class="logo-img">
+            <!-- Adicionando uma mensagem de erro comum para falhas de login -->
+            <div th:if="${param.error}" style="color:red; margin-bottom: 15px;">
+                Usuário ou senha inválidos.
             </div>
 
-            <form action="/login" method="POST">
+            <div class="logo">
+                <!-- A imagem também usa th:src para referenciar o caminho a partir de /static/ -->
+                <img th:src="@{/img/senai.png}" alt="Logo SENAI" class="logo-img">
+            </div>
+
+            <!-- O formulário de login usa a action do seu back-end, que já estava correta -->
+            <form th:action="@{/login}" method="POST">
                 <div class="input-group">
                     <label for="username">Usuário</label>
                     <input type="text" id="username" name="username" required>
@@ -26,15 +34,15 @@
                     <label for="password">Senha</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn">Entrar</button>
+                <button type="submit" class="btn" style="margin-top: 20px;">Entrar</button>
             </form>
 
-            <form action="/cadastro" method="GET" style="margin-top: 15px;">
-                <button type="submit" class="btn btn-cadastrar">Cadastrar</button>
+            <!-- O formulário de cadastro usa th:action para o endpoint do back-end -->
+            <form th:action="@{/cadastro}" method="GET" style="margin-top: 15px;">
+                <button type="submit" class="btn btn-cadastrar" style="margin-bottom: 10px;">Cadastrar</button>
             </form>
         </div>
     </div>
-
 </div>
 </body>
 </html>

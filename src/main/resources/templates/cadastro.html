@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="/css/base.css" />
-    <link rel="stylesheet" href="/css/login.css" />
-    <link rel="stylesheet" href="/css/cadastro.css" />
+
+    <!-- O link CSS agora usa th:href para referenciar o caminho a partir de /static/ -->
+    <link rel="stylesheet" th:href="@{/css/login-page/cadastro.css}">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cadastro - SENAI</title>
@@ -12,9 +12,9 @@
 <div class="login-container">
     <div class="login-box">
 
-        <!-- Logo SENAI dentro da caixa -->
         <div class="logo">
-            <img src="/img/senai.png" alt="Logo SENAI" class="logo-img">
+            <!-- A imagem também usa th:src para referenciar o caminho a partir de /static/ -->
+            <img th:src="@{/img/senai.png}" alt="Logo SENAI" class="logo-img">
         </div>
 
         <!-- Mensagem de erro se usuário já existe -->
@@ -22,6 +22,7 @@
             Usuário já existe! Tente outro nome.
         </div>
 
+        <!-- O formulário já estava correto, usando th:action para o endpoint do back-end -->
         <form action="#" th:action="@{/cadastro}" method="post">
             <div class="input-group">
                 <label for="username">Usuário</label>
@@ -32,11 +33,9 @@
                 <input type="password" id="password" name="password" required />
             </div>
 
-            <!-- NOVO CAMPO: Tipo de Usuário -->
             <div class="input-group">
                 <label for="tipoUsuario">Tipo de Usuário</label>
                 <select id="tipoUsuario" name="tipoUsuario" required>
-                    <!-- Adicione as opções de tipo de usuário, como "ALUNO", "INSTRUTOR", etc. -->
                     <option value="ALUNO">Aluno</option>
                     <option value="INSTRUTOR">Instrutor</option>
                 </select>
@@ -46,7 +45,9 @@
         </form>
 
         <p style="margin-top: 10px;">
-            Já tem uma conta? <br> <a th:href="@{/login}">Faça login aqui</a>.
+            Já tem uma conta? <br>
+            <!-- O link para a página de login agora usa th:href para o endpoint do Thymeleaf -->
+            <a th:href="@{/login}">Faça login aqui</a>.
         </p>
     </div>
 </div>

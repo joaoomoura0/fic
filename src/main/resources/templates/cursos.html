@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <!-- O link CSS agora usa th:href para referenciar o caminho a partir de /static/ -->
+  <link rel="stylesheet" th:href="@{/css/application-pages/cursos.css}">
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="/css/cursos.css" />
-  <title>Lista de Cursos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos - SENAI</title>
 </head>
 <body>
-<h1>Cursos Disponíveis</h1>
+<button class="menu-toggle" id="menu-toggle">☰</button>
 
-<a th:href="@{/cursos/novo}">Cadastrar novo curso</a>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-nav-container">
+    <div class="sidebar-logo">
+      <!-- A imagem também usa th:src para referenciar o caminho a partir de /static/ -->
+      <img th:src="@{/img/sesi-home.png}" alt="Logo SENAI">
+    </div>
+    <ul class="sidebar-nav">
+      <!-- Links para os endpoints do seu back-end, usando th:href -->
+      <li class="sidebar-nav-item"><a th:href="@{/home}">Home</a></li>
+      <li class="sidebar-nav-item"><a th:href="@{/cursos}">Cursos</a></li>
+      <li class="sidebar-nav-item"><a th:href="@{/configuracoes}">Configurações</a></li>
+      <li class="sidebar-nav-item"><a th:href="@{/logout}">Sair</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-footer">
+    <p>...</p>
+  </div>
+</aside>
 
-<table border="1">
-  <thead>
-  <tr>
-    <th>Código</th>
-    <th>Versão</th>
-    <th>Descrição</th>
-    <th>Cód. Área Atuação</th>
-    <th>Carga Horária</th>
-    <th>Cód. Modalidade DN</th>
-    <th>Cód. Precificação</th>
-    <th>Valor</th>
-    <th>Ações</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="curso : ${cursos}">
-    <td th:text="${curso.id.codCurso}"></td>
-    <td th:text="${curso.id.versaoCurso}"></td>
-    <td th:text="${curso.descCurso}"></td>
-    <td th:text="${curso.areaAtuacao?.codAreaAtuacao}"></td>
-    <td th:text="${curso.cargaHoraria} + ' h'"></td>
-    <td th:text="${curso.modalidadeDN?.codModalidadeDN}"></td>
-    <td th:text="${curso.precificacao?.codPrecificacao}"></td>
-    <td th:text="${curso.valorCurso} + ' R$'"></td>
-    <td>
-      <!-- CORREÇÃO: Passando os dois campos da chave primária -->
-      <a th:href="@{'/cursos/editar/' + ${curso.id.codCurso} + '/' + ${curso.id.versaoCurso}}">Editar</a> |
-      <a th:href="@{'/cursos/excluir/' + ${curso.id.codCurso} + '/' + ${curso.id.versaoCurso}}">Excluir</a>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<main class="main-content" id="main-content">
+  <header class="header">
+    <h1>Cursos Disponíveis</h1>
+    <p>Descubra as diversas áreas de conhecimento e especialize-se conosco!</p>
+  </header>
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Pesquisar por curso...">
+    <!-- Botão para cadastrar um novo curso, mantendo a funcionalidade do código antigo -->
+    <a th:href="@{/cursos/novo}" class="btn-cadastrar-curso">Cadastrar Novo Curso</a>
+  </div>
+
+  <div class="card-container">
+    <!-- Loop para iterar sobre a lista de cursos passada pelo Controller -->
+    <a th:each="curso : ${cursos}"
+       th:href="@{'/cursos/detalhe/' + ${curso.id.codCurso} + '/' + ${curso.id.versaoCurso}}"
+       class="card">
+      <!-- Exibindo o nome do curso. Você precisará ajustar para o campo correto do seu objeto 'curso' -->
+      <h2 th:text="${curso.descCurso}">Nome do Curso</h2>
+      <!-- Exibindo a descrição. Também ajuste para o campo correto -->
+      <p th:text="${curso.descCurso}"></p>
+      <!-- Você pode adicionar mais detalhes aqui se desejar, como carga horária, etc. -->
+    </a>
+  </div>
+
+  <div class="ver-mais">
+    <button class="ver-mais-btn">Ver Mais Cursos</button>
+  </div>
+</main>
+
+<!-- O arquivo JavaScript também usa th:src para o caminho correto -->
+<script th:src="@{/js/cursos.js}"></script>
 </body>
 </html>

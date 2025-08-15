@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- O link CSS agora usa th:href para referenciar o caminho a partir de /static/ -->
+    <link rel="stylesheet" th:href="@{/css/application-pages/home.css}">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/home.css" />
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - SENAI</title>
 </head>
 <body>
-<h1>Bem-vindo à Home</h1>
 
-<ul>
-    <li><a th:href="@{/cursos}">Ver cursos</a></li>
-    <!-- Adicione outros links aqui quando tiver outras páginas -->
-</ul>
+<button class="menu-toggle" id="menu-toggle">☰</button>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-nav-container">
+        <div class="sidebar-logo">
+            <!-- A imagem também usa th:src para referenciar o caminho a partir de /static/ -->
+            <img th:src="@{/img/sesi-home.png}" alt="Logo SENAI">
+        </div>
+        <ul class="sidebar-nav">
+            <!-- Links para os endpoints do seu back-end, usando th:href -->
+            <li class="sidebar-nav-item"><a th:href="@{/home}">Home</a></li>
+            <li class="sidebar-nav-item"><a th:href="@{/cursos}">Cursos</a></li>
+            <li class="sidebar-nav-item"><a th:href="@{/configuracoes}">Configurações</a></li>
+            <li class="sidebar-nav-item"><a th:href="@{/logout}">Sair</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-footer">
+        <p>...</p>
+    </div>
+</aside>
+
+<main class="main-content" id="main-content">
+    <header class="header">
+        <!-- Adicionando uma saudação personalizada, usando o nome do usuário -->
+        <h1 th:text="'Bem-vindo, ' + ${nomeUsuario} + '!'">Bem-vindo!</h1>
+        <p>Selecione uma das opções no menu lateral para continuar.</p>
+    </header>
+
+    <div class="card-container">
+        <!-- O card também usa th:href para o endpoint de cursos -->
+        <a th:href="@{/cursos}" class="card">
+            <h2>Ver Cursos</h2>
+            <p>Navegue por todos os cursos disponíveis na plataforma.</p>
+        </a>
+    </div>
+</main>
+
+<!-- O arquivo JavaScript também usa th:src para o caminho correto -->
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/css/application-pages/cursos-info.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Curso - SENAI</title>
+</head>
+<body>
+<div class="container">
+  <!-- O botão de voltar agora usa o th:href para o endpoint correto -->
+  <a th:href="@{/cursos}" class="back-button">← Voltar para Cursos</a>
+
+  <header class="course-header">
+    <!-- Título do curso preenchido dinamicamente com os dados do objeto -->
+    <h1 th:text="${curso.descCurso}"></h1>
+    <p th:text="${curso.descCurso}"></p>
+  </header>
+
+  <!-- A imagem do curso é um exemplo, você precisará de uma propriedade para isso -->
+  <img th:src="@{/img/placeholder-curso.jpg}" class="course-image" alt="Imagem do curso">
+
+  <div class="course-details">
+    <div class="detail-card">
+      <h3>Carga Horária</h3>
+      <p th:text="${curso.cargaHoraria} + 'h'"></p>
+    </div>
+    <div class="detail-card">
+      <h3>Preço</h3>
+      <!-- Formatação do valor para moeda brasileira -->
+      <p th:text="${#numbers.formatCurrency(curso.valorCurso, 'BRL')}"></p>
+    </div>
+    <div class="detail-card">
+      <h3>Modalidade</h3>
+      <p th:text="${curso.modalidadeDN?.codModalidadeDN}"></p>
+    </div>
+    <div class="detail-card">
+      <h3>Área de Atuação</h3>
+      <p th:text="${curso.areaAtuacao?.codAreaAtuacao}"></p>
+    </div>
+  </div>
+
+  <div class="course-description">
+    <h2 class="section-title">Sobre o Curso</h2>
+    <p th:text="${curso.descCurso}"></p>
+  </div>
+
+  <!-- Exemplo para professores, se você tiver uma lista de objetos 'professor' no seu curso -->
+  <div th:if="${not #lists.isEmpty(curso.professores)}" class="course-teachers">
+    <h2 class="section-title">Professores</h2>
+    <ul class="teacher-list">
+      <li th:each="professor : ${curso.professores}" th:text="${professor.nome}">Nome do Professor</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
