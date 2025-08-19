@@ -4,6 +4,9 @@ import com.fic.demo.models.Curso;
 import com.fic.demo.models.CursoId;
 import com.fic.demo.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +23,6 @@ public class CursosController {
 
     @GetMapping
     public String listarCursos(Model model) {
-        // CORREÇÃO: o método agora lida com a entidade Curso, não com CursoId
         List<Curso> cursos = cursoService.listarCursos();
         model.addAttribute("cursos", cursos);
         return "cursos";
@@ -28,26 +30,22 @@ public class CursosController {
 
     @GetMapping("/novo")
     public String mostrarFormulario(Model model) {
-        // CORREÇÃO: o formulário agora lida com um novo objeto Curso
         model.addAttribute("curso", new Curso());
         return "form";
     }
 
     @PostMapping
     public String salvarCurso(@ModelAttribute Curso curso) {
-        // CORREÇÃO: o método agora recebe e salva a entidade Curso
         cursoService.salvarCurso(curso);
         return "redirect:/cursos";
     }
 
-    // CORREÇÃO: O ID agora é composto por codCurso e versaoCurso
     @GetMapping("/editar/{codCurso}/{versaoCurso}")
     public String editarCurso(
             @PathVariable Integer codCurso,
             @PathVariable String versaoCurso,
             Model model
     ) {
-        // CORREÇÃO: Cria a chave composta para a busca
         CursoId id = new CursoId();
         id.setCodCurso(codCurso);
         id.setVersaoCurso(versaoCurso);
@@ -61,13 +59,11 @@ public class CursosController {
         }
     }
 
-    // CORREÇÃO: O ID agora é composto por codCurso e versaoCurso
     @GetMapping("/excluir/{codCurso}/{versaoCurso}")
     public String excluirCurso(
             @PathVariable Integer codCurso,
             @PathVariable String versaoCurso
     ) {
-        // CORREÇÃO: Cria a chave composta para a deleção
         CursoId id = new CursoId();
         id.setCodCurso(codCurso);
         id.setVersaoCurso(versaoCurso);
@@ -75,14 +71,13 @@ public class CursosController {
         return "redirect:/cursos";
     }
 
-    // CORREÇÃO: O ID agora é composto por codCurso e versaoCurso
+    // Método que retorna a página de detalhes (usando Thymeleaf)
     @GetMapping("/{codCurso}/{versaoCurso}")
     public String verDetalhesCurso(
             @PathVariable Integer codCurso,
             @PathVariable String versaoCurso,
             Model model
     ) {
-        // CORREÇÃO: Cria a chave composta para a busca
         CursoId id = new CursoId();
         id.setCodCurso(codCurso);
         id.setVersaoCurso(versaoCurso);
@@ -90,9 +85,48 @@ public class CursosController {
 
         if (curso.isPresent()) {
             model.addAttribute("curso", curso.get());
-            return "detalhes";
+            return "detalhes"; // Retorna a página 'detalhes.html'
         } else {
             return "redirect:/cursos";
+        }
+    }
+
+
+    // NOVO: Endpoint da API para o JavaScript
+    // Retorna os dados do curso em formato JSON
+    @GetMapping(value = "/api/{codCurso}/{versaoCurso}", produces = "application/json")
+    @ResponseBody
+    public Optional<Curso> getCursoApi(
+            @PathVariable Integer codCurso,
+            @PathVariable String versaoCurso
+    ) {
+        CursoId id = new CursoId();
+        id.setCodCurso(codCurso);
+        id.setVersaoCurso(versaoCurso);
+        return cursoService.buscarPorId(id);
+    }
+
+    // Controlador REST aninhado para API
+    @RestController
+    @RequestMapping("/api/cursos")
+    public class CursosApiController {
+
+        // A injeção de dependência deve ser para a classe de serviço, não para o repositório
+        private final CursoService cursoService;
+
+        @Autowired
+        public CursosApiController(CursoService cursoService) {
+            this.cursoService = cursoService;
+        }
+
+        @GetMapping
+        public Page<Curso> listarCursosPaginados(
+                @RequestParam(defaultValue = "0") int page,
+                @RequestParam(defaultValue = "8") int size
+        ) {
+            Pageable pageable = PageRequest.of(page, size);
+            // CORRIGIDO: Agora chamando o método correto no serviço
+            return cursoService.listarCursosPaginados(pageable);
         }
     }
 }
