@@ -29,8 +29,8 @@ O objetivo é criar um sistema web que facilite a **gestão e consulta de cursos
 - **HTML5**  
 - **CSS3**  
 - **JavaScript**  
-- **MySQL**  
-
+- **PostgreSQL** via **Supabase**
+  
 ---
 
 ## 💡 Objetivo Principal
