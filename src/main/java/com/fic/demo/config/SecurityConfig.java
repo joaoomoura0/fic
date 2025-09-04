@@ -1,6 +1,5 @@
 package com.fic.demo.config;
 
-// CORREÇÃO: O pacote deve ser 'service' (singular), não 'services' (plural).
 import com.fic.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
