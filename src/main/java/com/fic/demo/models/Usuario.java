@@ -1,28 +1,28 @@
-//---------------------------------------------------------------------
-// Modelo Corrigido para a classe 'Usuario'
-//---------------------------------------------------------------------
 package com.fic.demo.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor; // Adicione esta importação
+import lombok.AllArgsConstructor; // Adicione esta importação
 
 @Entity
 @Table(name = "usuario")
+@NoArgsConstructor // Adicione esta anotação
+@AllArgsConstructor // Adicione esta anotação (opcional, mas boa prática com Lombok)
 public class Usuario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Integer idUsuario; // Mantido em camelCase, com @Column para mapear para "id_usuario"
+    private Integer idUsuario;
 
     @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
 
     @Column(name = "password_hash", nullable = false, length = 255)
-    private String passwordHash; // Mantido em camelCase, com @Column para mapear para "password_hash"
+    private String passwordHash;
 
     @Column(name = "tipo_usuario", nullable = false, length = 20)
-    private String tipoUsuario; // Mantido em camelCase, com @Column para mapear para "tipo_usuario"
+    private String tipoUsuario;
 
     @Column(name = "ativo")
     private Boolean ativo;
@@ -30,7 +30,8 @@ public class Usuario {
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
-    // Getters e Setters
+    // Getters e Setters (se você estiver usando Lombok, pode remover estes
+    // e adicionar @Data ou @Getter/@Setter no topo da classe)
     public Integer getIdUsuario() {
         return idUsuario;
     }
